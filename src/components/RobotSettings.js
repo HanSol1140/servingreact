@@ -15,7 +15,7 @@ const RobotSettings = () => {
         }));
     });
     return (
-        <div>
+        <section id="RobotSettings">
             <ul>
                 <li>robotName</li>
                 <li>
@@ -29,7 +29,7 @@ const RobotSettings = () => {
                 </input>
                 </li>
             </ul>
-        </div>
+        </section>
     );
 };
 
