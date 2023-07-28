@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Headers from './components/Headers';
 import RobotSettings from './components/RobotSettings';
-import RobotList from './components/RobotList';
+import MovePointSettings from './components/MovePointSettings';
 import './App.css';
 
 function App() {
@@ -11,8 +11,8 @@ function App() {
       <div className="App">
         <Headers></Headers>
         <Routes>
-          <Route path="/" element={<RobotList/>}/>
           <Route path="/RobotSettings" element={<RobotSettings/>}/>
+          <Route path="/RobotSettings" element={<MovePointSettings/>}/>
         </Routes>
       </div>
     </Router>
