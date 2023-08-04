@@ -192,6 +192,7 @@ const RobotSettings = () => {
                     <li>RobotName</li>
                     <li>RobotNumber</li>
                     <li>RobotIP</li>
+                    <li>수정 / 삭제</li>
 
                 </ul>
             </div>

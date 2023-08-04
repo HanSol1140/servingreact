@@ -12,7 +12,7 @@ function App() {
         <Headers></Headers>
         <Routes>
           <Route path="/RobotSettings" element={<RobotSettings/>}/>
-          <Route path="/RobotSettings" element={<MovePointSettings/>}/>
+          <Route path="/MovePointSettings" element={<MovePointSettings/>}/>
         </Routes>
       </div>
     </Router>
