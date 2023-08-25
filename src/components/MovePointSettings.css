@@ -81,7 +81,6 @@
 }
 
 #MovePointSettings .robotList {
-
     width: 1000px;
 }
 
@@ -89,76 +88,92 @@
 #MovePointSettings h2{
     text-align: center;
 }
+#MovePointSettings  .robotListTitle{
+    width: 1000px;
+}
 
 #MovePointSettings  .robotListTitle ul{
     display: flex;
+    text-align: center;
+    justify-content: center;
     /* border: 1px solid #000; */
     
     
 }
 
 #MovePointSettings  .robotListTitle ul li{
-    display: flex;
-    flex-grow: 1;
+    font-size: 20px;
     padding: 4px;
+    margin: 4px;
     background-color: #ccc;
     border-radius: 4px;
     font-weight: bold;
-    width: 242px;
-    padding: 4px;
-    margin: 4px;
     justify-content: center;
-    /* border: 1px solid #000; */
+}
+#MovePointSettings  .robotListTitle ul li:nth-child(1){
+    width: 200px;
+}
+#MovePointSettings  .robotListTitle ul li:nth-child(2){
+    width: 600px;
+}
+#MovePointSettings  .robotListTitle ul li:nth-child(3){
+    width: 200px;
 }
 
-
-#MovePointSettings .robotList ul{
+#MovePointSettings .pointList div{
     display: flex;
+    width: 1000px;
     /* border: 1px solid #000; */
 }
-#MovePointSettings .robotList ul li{
-    display: flex;
-    width: 250px;
+#MovePointSettings .pointList div ul{
+    font-weight: bold;
     margin: 4px;
-    flex-grow: 1;
-    padding: 4px;
-    text-align: center;
+    border-radius: 4px;
     background-color: #ccc;
-    border-radius: 4px;
-    font-weight: bold;
-    padding: 10px;
-    /* text-align: center; */
-    /* justify-content: center; */
+    text-align: center;
+    justify-content: center;
+}
+#MovePointSettings .pointList div ul li{
+
+    padding: 4px;
+}
+
+#MovePointSettings .pointList ul:nth-child(1){
+    width: 200px;
+}
+#MovePointSettings .pointList ul:nth-child(2){
+    width: 600px;
+    display: flex;
+    background-color: white;
+}
+#MovePointSettings .pointList ul:nth-child(2) li{
+    flex-grow: 1;
+    background-color: #ccc;
     /* border: 1px solid #000; */
-}
-
-#MovePointSettings .robotList ul li:nth-child(4){
-    background-color: #fff;
-    padding: 4px;
-
-}
-#MovePointSettings .robotList ul li button:nth-child(1){
-    flex-grow: 1;
-    margin-right: 10px;
-    width: 100px;
-    padding: 4px;
-    border: 1px solid #000;
-    background-color: #33B84C;
-    border: none;
     border-radius: 4px;
-    font-weight: bold;
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
 }
-#MovePointSettings .robotList ul li button:nth-child(1):hover{
-    background-color: #228833;
+#MovePointSettings .pointList ul:nth-child(2) li:nth-child(2){
+    margin-left: 4px;
+    margin-right: 4px;
 }
 
-#MovePointSettings .robotList ul li button:nth-child(2){
-    flex-grow: 1;
-    margin-left: 10px;
-    width: 100px;
+#MovePointSettings .pointList ul:nth-child(3){
+    width: 200px;
+    background-color: #fff;
+}
+#MovePointSettings .pointList ul li ul{
+    display: flex;
+    width: 600px;
+    border: 1px solid #000;
+}
+#MovePointSettings .pointList ul li ul li{
+    width: 200px;
+    border: 1px solid #000;
+}
+
+#MovePointSettings .pointList ul button{
+    /* margin: 4px; */
+    width: 192px;
     padding: 4px;
     background-color: #dd5522;
     border: none;
@@ -168,6 +183,11 @@
     color: white;
     cursor: pointer;
 }
-#MovePointSettings .robotList ul li button:nth-child(2):hover{
-    background-color: #993f1f;
+#MovePointSettings .pointList ul button:hover{
+    background-color: #cc3f1f;
+}
+
+#footer {
+    width: 100%;
+    height: 100px;
 }

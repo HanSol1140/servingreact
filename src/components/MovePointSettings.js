@@ -4,6 +4,7 @@ import './MovePointSettings.css'
 
 
 const MovePointSettings = () => {
+    const [pointList, setPointList] = useState([]);
     const [inputText, setInputText] = useState({
         pointName: '',
         pointCoordinates: '',
@@ -17,6 +18,21 @@ const MovePointSettings = () => {
         }));
         // console.log(e.target.value);
     });
+
+    useEffect(() => {
+        async function getPointList() {
+            try {
+                const response = await axios.get(`http://localhost:8084/api/getpointlist`);
+                if (response.status === 200) {
+                    // console.log(response.data);
+                    setPointList(response.data);
+                }
+            } catch (error) {
+                console.error('Error with API call:', error);
+            }
+        }
+        getPointList();
+    }, [pointList]);
 
     async function createPointList() {
         try {
@@ -40,6 +56,11 @@ const MovePointSettings = () => {
 
             if (response.status === 200) {
                 console.log(response.data);
+                setInputText(prevState => ({
+                    ...prevState,
+                    pointName: '',
+                    pointCoordinates: '',
+                }));
       
             }
         } catch (error) {
@@ -51,6 +72,24 @@ const MovePointSettings = () => {
         }
     }
 
+    async function deletePointList(pointName) {
+        try {
+            const response = await axios.post(`http://localhost:8084/api/deletepointlist`, {
+                pointName: pointName
+            });
+            if (response.status === 200) {
+                console.log(response.data);
+                // 로봇 리스트를 다시 가져와서 업데이트
+                const pointListResponse = await axios.get(`http://localhost:8084/api/getpointlist`);
+                if (pointListResponse.status === 200) {
+                    setPointList(pointListResponse.data);
+                }
+            }
+        } catch (error) {
+            console.error('Error with API call:', error);
+        }
+    }
+
     return (
 
         <section id="MovePointSettings">
@@ -58,13 +97,7 @@ const MovePointSettings = () => {
                 <ul>
                     <li>포인트명</li>
                     <li>좌표</li>
-                    <li>
-                        <input
-                            type="text"
-                            placeholder="123"
-                        >
-                        </input>
-                    </li>
+                    <li></li>
                 </ul>
             </div>
             <div className="createRobotList">
@@ -85,7 +118,7 @@ const MovePointSettings = () => {
                             type="text"
                             id="pointCoordinates"
                             name="pointCoordinates"
-                            placeholder='서빙봇 좌표를 붙여 넣어주세요.'
+                            placeholder='X,Y,Theta형식으로 값을 넣어주세요.'
                             value={inputText.pointCoordinates}
                             onChange={onChange}
                         >
@@ -106,11 +139,26 @@ const MovePointSettings = () => {
 
                 </ul>
             </div>
-                
-
-
-
-
+            {pointList.map((item, index) => (
+                <div className="pointList" key={index}>
+                    {(
+                        <div>
+                            <ul>
+                                <li>{item.pointName}</li>
+                            </ul>   
+                            <ul>
+                                <li>X : {item.coordinatesX}</li>
+                                <li>Y : {item.coordinatesY}</li>
+                                <li>Theta : {item.coordinatesTheta}</li>
+                            </ul>
+                            <ul>
+                                <button onClick={() => deletePointList(item.pointName)}>삭제</button>
+                            </ul>
+                        </div>
+                    )}
+                </div>
+            ))}
+            <footer id="footer"></footer>
         </section>
     );
 };
