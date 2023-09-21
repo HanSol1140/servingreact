@@ -18,21 +18,22 @@ const MovePointSettings = () => {
         }));
         // console.log(e.target.value);
     });
-
-    useEffect(() => {
-        async function getPointList() {
-            try {
-                const response = await axios.get(`http://localhost:8084/api/getpointlist`);
-                if (response.status === 200) {
-                    // console.log(response.data);
-                    setPointList(response.data);
-                }
-            } catch (error) {
-                console.error('Error with API call:', error);
+    
+    async function getPointList() {
+        try {
+            const response = await axios.get(`http://localhost:8084/api/getpointlist`);
+            if (response.status === 200) {
+                console.log(response.data);
+                setPointList(response.data);
             }
+        } catch (error) {
+            console.error('Error with API call:', error);
         }
+    }
+    useEffect(() => {
+
         getPointList();
-    }, [pointList]);
+    }, []);
 
     async function createPointList() {
         try {
@@ -55,12 +56,14 @@ const MovePointSettings = () => {
             });
 
             if (response.status === 200) {
-                console.log(response.data);
+                alert(response.data);
                 setInputText(prevState => ({
                     ...prevState,
                     pointName: '',
                     pointCoordinates: '',
                 }));
+                // 로봇 리스트를 다시 가져와서 업데이트
+                getPointList();
       
             }
         } catch (error) {
@@ -80,10 +83,7 @@ const MovePointSettings = () => {
             if (response.status === 200) {
                 console.log(response.data);
                 // 로봇 리스트를 다시 가져와서 업데이트
-                const pointListResponse = await axios.get(`http://localhost:8084/api/getpointlist`);
-                if (pointListResponse.status === 200) {
-                    setPointList(pointListResponse.data);
-                }
+                getPointList();
             }
         } catch (error) {
             console.error('Error with API call:', error);
@@ -135,29 +135,30 @@ const MovePointSettings = () => {
                 <ul>
                     <li>포인트명</li>
                     <li>좌표</li>
-                    <li>수정 / 삭제</li>
+                    <li>삭제</li>
 
                 </ul>
             </div>
             {pointList.map((item, index) => (
-                <div className="pointList" key={index}>
-                    {(
-                        <div>
-                            <ul>
-                                <li>{item.pointName}</li>
-                            </ul>   
-                            <ul>
-                                <li>X : {item.coordinatesX}</li>
-                                <li>Y : {item.coordinatesY}</li>
-                                <li>Theta : {item.coordinatesTheta}</li>
-                            </ul>
-                            <ul>
-                                <button onClick={() => deletePointList(item.pointName)}>삭제</button>
-                            </ul>
-                        </div>
-                    )}
-                </div>
+            <div className="pointList" key={index}>
+                <ul>
+                    <li>{item.pointName}</li>
+                </ul>
+                <ul>
+                    <li>X : {item.coordinatesX}</li>
+                    <li>Y : {item.coordinatesY}</li>
+                    <li>Theta : {item.coordinatesTheta}</li>
+                    
+                    
+                </ul>
+                <ul>
+                    <li>
+                        <button onClick={() => deletePointList(item.pointName)}>삭제</button>
+                    </li>
+                </ul>
+            </div>
             ))}
+
             <footer id="footer"></footer>
         </section>
     );

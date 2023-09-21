@@ -62,11 +62,13 @@ const RobotSettings = () => {
                 robotNumber: inputText.robotNumber,
                 robotIP: inputText.robotIP,
             });
+
             if (response.status === 200) {
-                console.log(response.data);
+                alert(response.data);
                 // 로봇 리스트를 다시 가져와서 업데이트
                 const robotListResponse = await axios.get(`http://localhost:8084/api/getrobotlist`);
                 if (robotListResponse.status === 200) {
+                    console.log("요청성공");
                     setRobotList(robotListResponse.data);
                     setInputText({
                         robotName: '',
@@ -86,7 +88,7 @@ const RobotSettings = () => {
 
     async function deleteRobotList(deletename) {
         try {
-            const response = await axios.post(`http://localhost:8084/api/deleterobotlist`, {
+            const response = await axios.post(`http://localhost:8084/api/deleterobot`, {
                 robotName: deletename
             });
             if (response.status === 200) {
@@ -120,7 +122,7 @@ const RobotSettings = () => {
                 newRobotIP: editInputText.robotIP,
             });
             if (response.status === 200) {
-                console.log(response.data);
+                alert(response.data);
                 // 로봇 리스트를 다시 가져와서 업데이트
                 const robotListResponse = await axios.get(`http://localhost:8084/api/getrobotlist`);
                 if (robotListResponse.status === 200) {
